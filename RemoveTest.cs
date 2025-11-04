@@ -7,7 +7,7 @@ using System;
 namespace TestProject1
 {
     [TestClass]
-    public class RemoveTest:Base
+    public class RemoveTest:TestBase
     {
 
 

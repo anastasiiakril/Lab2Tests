@@ -7,7 +7,7 @@ using System;
 namespace TestProject1
 {
     [TestClass]
-    public class Base
+    public class TestBase
     {
 
         protected IWebDriver driver;
