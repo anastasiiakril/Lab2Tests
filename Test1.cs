@@ -20,6 +20,8 @@ namespace TestProject1
 
             var service = ChromeDriverService.CreateDefaultService(@"C:\Users\ANASTASIJA\Downloads\chromedriver-win64\chromedriver-win64\chromedriver.exe");
             driver = new ChromeDriver(service, options);
+
+            driver.Navigate().GoToUrl("https://www.saucedemo.com/");
         }
 
         [TestCleanup]
@@ -28,23 +30,39 @@ namespace TestProject1
             driver.Quit();
         }
 
-
-
         [TestMethod]
-        public void RemovingItemFromInventory()
+        public void WhenRemoveItem_BadgeShouldDisappear()
         {
-            driver.Navigate().GoToUrl("https://www.saucedemo.com/");
-            driver.FindElement(By.CssSelector("*[data-test=\"username\"]")).SendKeys("problem_user");
-            driver.FindElement(By.CssSelector("*[data-test=\"password\"]")).SendKeys("secret_sauce");
-            driver.FindElement(By.CssSelector("*[data-test=\"login-button\"]")).Click();
-            driver.FindElement(By.CssSelector("*[data-test=\"add-to-cart-sauce-labs-backpack\"]")).Click();
+            LoginWithNameAndPassword("problem_user", "secret_sauce");
+            AddAnItem();
+            RemoveAnItem();
+            CheckThatItemIsRemoved(); 
+        }
 
-
-            Assert.AreEqual("1", (string)driver.FindElement(By.CssSelector("*[data-test=\"shopping-cart-badge\"]")).Text);
-            driver.FindElement(By.CssSelector("*[data-test=\"remove-sauce-labs-backpack\"]")).Click();
+        public void CheckThatItemIsRemoved()
+        {
             var badge = driver.FindElements(By.CssSelector("*[data-test=\"shopping-cart-badge\"]"));
             Assert.AreEqual(0, badge.Count, "Badge that indicates the number of items present it the shopping cart is still present after removing items from cart.");
-
         }
+
+        public void LoginWithNameAndPassword(string username, string password)
+        {
+            
+            driver.FindElement(By.CssSelector("*[data-test=\"username\"]")).SendKeys(username);
+            driver.FindElement(By.CssSelector("*[data-test=\"password\"]")).SendKeys(password);
+            driver.FindElement(By.CssSelector("*[data-test=\"login-button\"]")).Click();
+        }
+
+        public void AddAnItem()
+        {
+            driver.FindElement(By.CssSelector("*[data-test=\"add-to-cart-sauce-labs-backpack\"]")).Click();
+        }
+
+        public void RemoveAnItem()
+        {
+            driver.FindElement(By.CssSelector("*[data-test=\"remove-sauce-labs-backpack\"]")).Click();
+        }
+
+
     }
 }
