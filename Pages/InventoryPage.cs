@@ -1,34 +1,22 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿
 using OpenQA.Selenium;
-using OpenQA.Selenium.Chrome;
-using OpenQA.Selenium.Support.UI;
-using System;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace TestProject1
+namespace TestProject1.Pages
 {
-   
-    public class MainPage
+
+    public class InventoryPage
     {
         private IWebDriver Driver;
 
-        private By username_field = By.CssSelector("*[data-test=\"username\"]");
-        private By password_field = By.CssSelector("*[data-test=\"password\"]");
-        private By login_button = By.CssSelector("*[data-test=\"login-button\"]");
+       
         private By add_button = By.CssSelector("*[data-test=\"add-to-cart-sauce-labs-backpack\"]");
         private By remove_button = By.CssSelector("*[data-test=\"remove-sauce-labs-backpack\"]");
         private By cartBadge = By.CssSelector("*[data-test=\"shopping-cart-badge\"]");
 
-        public MainPage(IWebDriver driver)
+        public InventoryPage(IWebDriver driver)
         {
             Driver = driver;
-        }
-
-        public void LoginWithNameAndPassword(string username, string password)
-        {
-
-            Driver.FindElement(username_field).SendKeys(username);
-            Driver.FindElement(password_field).SendKeys(password);
-            Driver.FindElement(login_button).Click();
         }
 
         public void AddAnItem()
