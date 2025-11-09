@@ -3,9 +3,8 @@ using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 
 
-namespace TestProject1.Base
+namespace Lab2Tests.Base
 {
-    [TestClass]
     public class TestBase
     {
 

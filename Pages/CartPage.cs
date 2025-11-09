@@ -5,7 +5,7 @@ using SeleniumExtras.PageObjects;
 namespace Lab2Tests.Pages
 {
 
-    public class InventoryPage
+    public class CartPage
     {
         private readonly IWebDriver Driver;
 
@@ -18,20 +18,14 @@ namespace Lab2Tests.Pages
         [FindsBy(How = How.CssSelector, Using = "*[data-test=\"shopping-cart-badge\"]")]
         private IList<IWebElement> cartBadge { get; set; }
 
-
         //private By add_button = By.CssSelector("*[data-test=\"add-to-cart-sauce-labs-backpack\"]");
         //private By remove_button = By.CssSelector("*[data-test=\"remove-sauce-labs-backpack\"]");
         //private By cartBadge = By.CssSelector("*[data-test=\"shopping-cart-badge\"]");
 
-        public InventoryPage(IWebDriver driver)
+        public CartPage(IWebDriver driver)
         {
             Driver = driver;
             PageFactory.InitElements(driver, this);
-        }
-
-        public void AddAnItem()
-        {
-            addButton.Click();
         }
 
         public void RemoveAnItem()
@@ -41,7 +35,7 @@ namespace Lab2Tests.Pages
 
         public void CheckThatItemIsRemoved()
         {
-           
+
             Assert.AreEqual(0, cartBadge.Count, "Badge that indicates the number of items present it the shopping cart is still present after removing items from cart.");
         }
 
