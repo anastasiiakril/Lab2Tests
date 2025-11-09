@@ -10,7 +10,7 @@ namespace Lab2Tests.Tests
 
 
         [TestMethod]
-        public void WhenRemoveItem_Inventory()
+        public void WhenRemoveItemFromInventory()
         {
             LoginPage loginPage = new LoginPage(driver);
             loginPage.LoginWithNameAndPassword("problem_user", "secret_sauce");
@@ -21,15 +21,20 @@ namespace Lab2Tests.Tests
             inventoryPage.CheckThatItemIsRemoved();
         }
 
-        public void WhenRemoveItem_Cart()
+        [TestMethod]
+        public void WhenRemoveItemFromCart()
         {
             LoginPage loginPage = new LoginPage(driver);
             loginPage.LoginWithNameAndPassword("problem_user", "secret_sauce");
 
             InventoryPage inventoryPage = new InventoryPage(driver);
             inventoryPage.AddAnItem();
-            inventoryPage.RemoveAnItem();
-            inventoryPage.CheckThatItemIsRemoved();
+            inventoryPage.NavigateToCartPage();
+
+            CartPage cartPage = new CartPage(driver);
+            cartPage.RemoveAnItem();
+            cartPage.CheckThatItemIsRemoved();
+
         }
 
 

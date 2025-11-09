@@ -9,8 +9,6 @@ namespace Lab2Tests.Pages
     {
         private readonly IWebDriver Driver;
 
-        [FindsBy(How = How.CssSelector, Using = "*[data-test=\"add-to-cart-sauce-labs-backpack\"]")]
-        private IWebElement addButton { get; set; }
 
         [FindsBy(How = How.CssSelector, Using = "*[data-test=\"remove-sauce-labs-backpack\"]")]
         private IWebElement removeButton { get; set; }

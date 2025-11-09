@@ -18,6 +18,8 @@ namespace Lab2Tests.Pages
         [FindsBy(How = How.CssSelector, Using = "*[data-test=\"shopping-cart-badge\"]")]
         private IList<IWebElement> cartBadge { get; set; }
 
+        [FindsBy(How = How.CssSelector, Using = "*[data-test=\"shopping-cart-link\"]")]
+        private IWebElement cartLink { get; set; }
 
         //private By add_button = By.CssSelector("*[data-test=\"add-to-cart-sauce-labs-backpack\"]");
         //private By remove_button = By.CssSelector("*[data-test=\"remove-sauce-labs-backpack\"]");
@@ -43,6 +45,11 @@ namespace Lab2Tests.Pages
         {
            
             Assert.AreEqual(0, cartBadge.Count, "Badge that indicates the number of items present it the shopping cart is still present after removing items from cart.");
+        }
+
+        public void NavigateToCartPage()
+        {
+            cartLink.Click();
         }
 
     }
