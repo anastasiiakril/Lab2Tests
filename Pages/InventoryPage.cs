@@ -1,6 +1,7 @@
 ﻿
 using OpenQA.Selenium;
 using SeleniumExtras.PageObjects;
+using System;
 
 namespace Lab2Tests.Pages
 {
@@ -18,6 +19,9 @@ namespace Lab2Tests.Pages
         [FindsBy(How = How.CssSelector, Using = "*[data-test=\"shopping-cart-badge\"]")]
         private IList<IWebElement> cartBadge { get; set; }
 
+        [FindsBy(How = How.CssSelector, Using = "*[data-test=\"shopping-cart-badge\"]")]
+        private IWebElement badge { get; set; }
+
         [FindsBy(How = How.CssSelector, Using = "*[data-test=\"shopping-cart-link\"]")]
         private IWebElement cartLink { get; set; }
 
@@ -34,6 +38,7 @@ namespace Lab2Tests.Pages
         public void AddAnItem()
         {
             addButton.Click();
+            Assert.AreEqual("1", badge.Text, "Expected cart badge text to be '1' after adding an item, but got '{badge.Text}'.");
         }
 
         public void RemoveAnItem()
@@ -44,7 +49,7 @@ namespace Lab2Tests.Pages
         public void CheckThatItemIsRemoved()
         {
            
-            Assert.AreEqual(0, cartBadge.Count, "Badge that indicates the number of items present it the shopping cart is still present after removing items from cart.");
+            Assert.AreEqual(0, cartBadge.Count, "Badge is still present after removing items from inventory.");
         }
 
         public void NavigateToCartPage()

@@ -34,7 +34,7 @@ namespace Lab2Tests.Pages
         public void CheckThatItemIsRemoved()
         {
 
-            Assert.AreEqual(0, cartBadge.Count, "Badge that indicates the number of items present it the shopping cart is still present after removing items from cart.");
+            Assert.AreEqual(0, cartBadge.Count, "Badge is still present after removing items from cart.");
         }
 
     }
